@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTEUP Admit Card Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Inline SVG favicon (single-file, safe for GitHub Pages) -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%2307143a'/><circle cx='32' cy='22' r='16' fill='%2300aaff'/><text x='32' y='44' font-size='12' font-family='Verdana' fill='%23ffffff' text-anchor='middle'>VTS</text></svg>">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%2307143a'/><circle cx='32' cy='22' r='16' fill='%2300aaff'/><text x='32' y='44' font-size='12' font-family='Verdana' fill='%23ffffff' text-anchor='middle'>VTS</text></svg>">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>BTEUP Admit Card Generator</h1>
+            <p class="subtitle">Enter your enrollment number</p>
+
+            <div class="form-group">
+                <label for="baseUrl">Base URL:</label>
+                <input type="text" id="baseUrl"
+                    placeholder="Example: https://bteup.ac.in/ESeva/Student/AdmitCard.aspx?EnrollNumber="
+                    value="https://bteup.ac.in/ESeva/Student/AdmitCard.aspx?EnrollNumber=" />
+            </div>
+
+            <div class="form-group">
+                <label for="enrollmentInput">Full Enrollment (include 'E' prefix):</label>
+                <input type="text" id="enrollmentInput" placeholder="Example: E23333835500012" maxlength="20" />
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="openAdmitCard()">
+                    Open Link
+                </button>
+                <button class="btn btn-secondary" onclick="copyLink()">
+                    Copy Link
+                </button>
+            </div>
+
+            <div id="resultDiv" class="result-section" style="display: none;">
+                <p class="result-label">Generated Link:</p>
+                <div class="link-display">
+                    <span id="generatedLink"></span>
+                    <button class="copy-btn" onclick="copyFromDisplay()">📋</button>
+                </div>
+            </div>
+
+            <div id="students-section" class="students-section">
+                <h2>Add Bulk Enrollments</h2>
+                <div class="form-group">
+                    <label for="bulkEnrollments">Enrollments (one per line, include E):</label>
+                    <textarea id="bulkEnrollments" rows="8"
+                        placeholder="E23333835500012&#10;E23333835500013"></textarea>
+                </div>
+                <button class="btn btn-success" onclick="generateBulkLinks()">
+                    Generate All Links
+                </button>
+            </div>
+
+            <div id="bulkResultDiv" class="result-section" style="display: none;">
+                <h3>Generated Links:</h3>
+                <div id="bulkLinksList" class="bulk-links-list"></div>
+                <button class="btn btn-secondary" onclick="downloadLinks()">
+                    Download All Links
+                </button>
+            </div>
+
+            <footer>
+                <p>BTEUP Admit Card Generator | Admit Card in one click</p>
+                <p class="credit">Website built by VTS-SPACE (Vansh Technology Services)</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
